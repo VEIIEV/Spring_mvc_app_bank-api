@@ -11,4 +11,7 @@
 
 создана таблица для хранения пользователей
 
+все код необходимый для реализация задания модуля: "Этап 1. Работа с балансом" реализованы в классах
+User, appError, MainRestController, UserRepository, BalanceOperation, UserService
+
 ![image](https://user-images.githubusercontent.com/62066130/201464400-6feb3d75-9bea-4074-bf9c-4accae32fc44.png)
