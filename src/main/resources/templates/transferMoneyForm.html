@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Getting Started: Serving Web Content</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+
+  <!-- Stylesheet
+      ================================================== -->
+  <link rel="stylesheet" type="text/css"  href="default.css">
+</head>
+
+<body>
+
+
+<div class="container">
+  <h1> transfer</h1>
+  <form action="/transferMoney" method="post">
+    <label for="senderId" class="block">sender Id</label>
+    <input id="senderId" type="text" name="senderId">
+    <label for="recipientId" class="block">recipient Id</label>
+    <input id="recipientId" type="text" name="recipientId">
+    <label for="value" class="block">value </label>
+    <input id="value" type="text" name="value">
+    <input type="submit" value="transfer">
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+
+    <!-- Stylesheet
+        ================================================== -->
+    <link rel="stylesheet" type="text/css"  href="default.css">
+</head>
+<body>
+
+<p th:text="'Hello, ' + ${name} + '!'"/>
+
+<p th:text="${HeaderMessage}"/>
+
+<body class="block">
+<button onclick="window.location.href='http://localhost:8080/takeMoneyForm';" > take money</button>
+</body>
+
+<body class="block">
+<button onclick="window.location.href='http://localhost:8080/putMoneyForm';" > put Money</button>
+</body>
+
+<body class="block">
+<button onclick="window.location.href='http://localhost:8080/transferMoneyForm';" > transfer Money</button>
+</body>
+
+<body class="block">
+<button onclick="window.location.href='http://localhost:8080/showAllUsers';" > показать список пользователей</button>
+</body>
+
+
+<div class="container">
+    <h1>get Balance</h1>
+    <form action="/getBalance" method="get">
+        <label for="id">User id</label>
+        <input id="id" type="text" name="id">
+        <input   type="submit" value="find" >
+    </form>
+</div>
+
+
+</body>
+</html>

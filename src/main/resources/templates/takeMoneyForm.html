@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Getting Started: Serving Web Content</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+
+  <!-- Stylesheet
+      ================================================== -->
+  <link rel="stylesheet" type="text/css"  href="default.css">
+</head>
+
+<body>
+
+
+
+<h1>take money form</h1>
+
+
+<div class="container">
+  <h1> take money</h1>
+  <form action="/takeMoney" method="post">
+    <label for="id" class="block">User id</label>
+    <input id="id" type="text" name="id">
+    <label for="value" class="block">User id</label>
+    <input id="value" type="text" name="value">
+    <input type="submit" value="withdraw">
+  </form>
+</div>
+
+
+</body>
+</html>

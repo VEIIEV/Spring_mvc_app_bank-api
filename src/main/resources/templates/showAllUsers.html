@@ -1,0 +1,63 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Books</title>
+    <link rel="stylesheet" type="text/css" href="default.css">
+</head>
+<body>
+<div>
+    <a href="/greeting"> home page</a>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1> users </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th> id</th>
+                    <th> balance</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if=" ${users!=null and users.empty}">
+                    <td colspan="2"> No Users created</td>
+                </tr>
+                <tr th:each="user : ${users}">
+                    <td><span th:text="${user.id}"> id </span></td>
+                    <td><span th:text="${user.balance}"> balance </span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="col-md-6">
+        <h1>create new user</h1>
+        <form action="/showAllUsers/createUser" method="post">
+            <label for="balance">balance</label>
+            <input id="balance" type="text" name="balance">
+            <!--onclick нужен, что бы возвращатсья к старой страничке после сохранения пользователя-->
+            <!-- onclick="window.location.href = 'http://localhost:8080/showAllUsers';" -->
+            <input  type="submit" value="Save">
+        </form>
+    </div>
+
+    <div class="col-md-6">
+        <h1>delete user by id</h1>
+        <form action="/showAllUsers/deleteUser" method="post">
+            <label for="userId">id</label>
+            <input id="userId" type="text" name="userId">
+            <!--onclick нужен, что бы возвращатсья к старой страничке после сохранения пользователя-->
+            <input  type="submit" value="delete">
+        </form>
+    </div>
+</div>
+</body>
+</html>

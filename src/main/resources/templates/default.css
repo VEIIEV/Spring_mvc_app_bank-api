@@ -1,0 +1,23 @@
+
+
+button {
+    display: inline-block;
+    margin: 5px;
+}
+
+div.container{
+    margin: 10px;
+    padding: 4px;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: "Times New Roman";
+    display: inline-block;
+    border: solid;
+}
+
+.block {
+    display:block;
+    margin:0 10px 5px 0;
+    color:#474747;
+
+}

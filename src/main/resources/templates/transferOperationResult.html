@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Getting Started: Serving Web Content</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+
+  <!-- Stylesheet
+      ================================================== -->
+  <link rel="stylesheet" type="text/css"  href="default.css">
+</head>
+
+<body>
+
+<div>
+  <a href="/greeting"> home page</a>
+</div>
+
+
+<h1>transfer Operation Result</h1>
+
+
+<div class="container">
+  <h2 th:text="'sender id:' + ${sender.id}">id</h2>
+  <h2 th:text="'sender balance:' + ${sender.balance}">balance</h2>
+</div>
+
+
+<div class="container">
+  <h2 th:text="'recipient id:' + ${recipient.id}">id</h2>
+  <h2 th:text="'recipient balance:' + ${recipient.balance}">balance</h2>
+</div>
+
+</body>
+</html>

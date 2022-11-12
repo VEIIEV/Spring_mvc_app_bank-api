@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Getting Started: Serving Web Content</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+
+  <!-- Stylesheet
+      ================================================== -->
+  <link rel="stylesheet" type="text/css"  href="default.css">
+</head>
+
+<body>
+
+<div>
+  <a href="/greeting"> home page</a>
+</div>
+
+
+<h1>balance page</h1>
+
+
+<div class="container">
+  <h2 th:text="'Your current id:' + ${user.id}">id</h2>
+  <h2 th:text="'Your current balance:' + ${user.balance}">balance</h2>
+</div>
+
+</body>
+</html>
