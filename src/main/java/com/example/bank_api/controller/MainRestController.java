@@ -22,18 +22,17 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class MainRestController {
 
-    final private UserRepository userRepository;
-    final private BalanceOperation balanceOperation;
+    private final UserRepository userRepository;
+    private final BalanceOperation balanceOperation;
 
-    final private HistoryOperationService historyOperationService;
+    private final HistoryOperationService historyOperationService;
 
-    final private UserService userService;
+    private final UserService userService;
 
     @GetMapping("/employeeswithvariable/{id}")
     @ResponseBody
     public User getEmployeesByIdWithVariableName(@PathVariable("id") Long employeeId) {
 
-        //return "ID: " + employeeId;
         return userService.getById(employeeId).get();
     }
 
@@ -86,8 +85,7 @@ public class MainRestController {
             @RequestParam(value = "to", required = false)
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
             LocalDateTime to) {
-            return historyOperationService.getOperationList(id, from, to).toString();
-
+        return historyOperationService.getOperationList(id, from, to).toString();
     }
 
 

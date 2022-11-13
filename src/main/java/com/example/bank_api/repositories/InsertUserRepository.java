@@ -8,7 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 //баласт, реализовал его в обычном UserRepo
-//jooq;
+//jooq
 @Repository
 public class InsertUserRepository {
 

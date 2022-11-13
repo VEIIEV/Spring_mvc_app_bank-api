@@ -7,6 +7,7 @@ import com.example.bank_api.repositories.OperationHistoryRepository;
 import com.example.bank_api.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
@@ -32,6 +33,7 @@ public class BalanceOperation {
     }
 
 
+    @Transactional(rollbackOn = {Exception.class})
     public int putMoney(Long id, double value) throws Exception {
         User user = userRepository.findUserById(id).orElseThrow();
         user.put(value);
@@ -41,6 +43,8 @@ public class BalanceOperation {
 
     }
 
+
+    @Transactional
     public int takeMoney(Long id, double value) throws Exception {
 
         User user = userRepository.findUserById(id).get();
