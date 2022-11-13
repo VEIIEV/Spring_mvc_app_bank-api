@@ -54,7 +54,7 @@ public class MainController {
         } catch (Exception e) {
             model.addAttribute("message", "insufficient fonds");
         }
-        model.addAttribute("user", userService.getById(id));
+        model.addAttribute("user", userService.getById(id).get());
 
         return "/userBalance";
     }
@@ -76,7 +76,7 @@ public class MainController {
         } catch (Exception e) {
             model.addAttribute("message", "idk");
         }
-        model.addAttribute("user", userService.getById(id));
+        model.addAttribute("user", userService.getById(id).get());
 
         return "/userBalance";
     }

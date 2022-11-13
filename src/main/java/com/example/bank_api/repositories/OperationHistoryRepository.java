@@ -1,7 +1,7 @@
 package com.example.bank_api.repositories;
 
 import com.example.bank_api.entities.OperationHistory;
-import org.springframework.data.jpa.repository.Query;
+import com.example.bank_api.entities.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,8 +13,7 @@ import java.util.Optional;
 @Repository
 public interface OperationHistoryRepository extends CrudRepository<OperationHistory, Long> {
 
-    List<OperationHistory> findOperationHistoriesByDateBetween(LocalDateTime from, LocalDateTime to);
-
+    List<OperationHistory> findOperationHistoriesByDateBetweenAndUserId(LocalDateTime from, LocalDateTime to, Optional<User> id);
 
     List<OperationHistory> findAll();
 

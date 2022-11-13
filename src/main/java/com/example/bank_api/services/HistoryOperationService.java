@@ -1,27 +1,29 @@
 package com.example.bank_api.services;
 
 import com.example.bank_api.entities.OperationHistory;
+import com.example.bank_api.entities.User;
 import com.example.bank_api.repositories.OperationHistoryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.Nullable;
+import com.example.bank_api.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class HistoryOperationService {
 
 
+    final UserRepository userRepository;
     final
     OperationHistoryRepository operationHistoryRepository;
 
-    public HistoryOperationService(OperationHistoryRepository operationHistoryRepository) {
+    public HistoryOperationService(UserRepository userRepository, OperationHistoryRepository operationHistoryRepository) {
+        this.userRepository = userRepository;
         this.operationHistoryRepository = operationHistoryRepository;
     }
 
-    public List<OperationHistory> getOperationList( LocalDateTime from, LocalDateTime to) {
+    public List<OperationHistory> getOperationList(Long id, LocalDateTime from, LocalDateTime to) {
         try {
                 if (from == null) {
                     System.out.println("from");
@@ -34,7 +36,8 @@ public class HistoryOperationService {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-        return operationHistoryRepository.findOperationHistoriesByDateBetween(from, to);
+        Optional<User> usrId = userRepository.findUserById(id);
+        return operationHistoryRepository.findOperationHistoriesByDateBetweenAndUserId(from, to, usrId);
 
 
     }

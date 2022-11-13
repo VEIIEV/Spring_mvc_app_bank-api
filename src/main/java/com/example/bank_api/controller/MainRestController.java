@@ -75,16 +75,18 @@ public class MainRestController {
         }
     }
 
+
+    //dateFormat:  yyyy-mm-ddThh:mm:ssZ like 2011-12-03T10:15:30-03:00
     @GetMapping("/getOperationList")
     public String getOperationList(
+            @RequestParam("id") Long id,
             @RequestParam(value = "from", required = false)
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
             LocalDateTime from,
             @RequestParam(value = "to", required = false)
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
             LocalDateTime to) {
-
-        return historyOperationService.getOperationList(from, to).toString();
+            return historyOperationService.getOperationList(id, from, to).toString();
 
     }
 
