@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -13,6 +14,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
+
+
+
     @Id
     @Column(name = "id", nullable = false)
     @SequenceGenerator(name = "usersIdSeq", sequenceName = "users_id_seq", allocationSize = 1)
@@ -21,6 +25,10 @@ public class User {
 
     @Column(name = "balance")
     private double balance;
+
+
+    @OneToMany(mappedBy = "userId")
+    private List<OperationHistory> operationHistories;
 
     public User(double balance) {
         this.balance=balance;

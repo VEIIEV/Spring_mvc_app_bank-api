@@ -5,13 +5,16 @@ import com.example.bank_api.entities.AppError;
 import com.example.bank_api.entities.User;
 import com.example.bank_api.repositories.UserRepository;
 import com.example.bank_api.services.BalanceOperation;
+import com.example.bank_api.services.HistoryOperationService;
 import com.example.bank_api.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 
 @RestController
 @EnableAutoConfiguration
@@ -19,9 +22,12 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class MainRestController {
 
-    final UserRepository userRepository;
-    final BalanceOperation balanceOperation;
-    final UserService userService;
+    final private UserRepository userRepository;
+    final private BalanceOperation balanceOperation;
+
+    final private HistoryOperationService historyOperationService;
+
+    final private UserService userService;
 
     @GetMapping("/employeeswithvariable/{id}")
     @ResponseBody
@@ -48,14 +54,13 @@ public class MainRestController {
     }
 
 
-
     @PostMapping("/takeMoney")
     public ResponseEntity<?> takeMoney(@RequestParam("id") Long id, @RequestParam("value") double value) {
         try {
             balanceOperation.takeMoney(id, value);
             return new ResponseEntity<>(1, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(new AppError(0, "Insufficient funds"), HttpStatus.BAD_REQUEST );
+            return new ResponseEntity<>(new AppError(0, "Insufficient funds"), HttpStatus.BAD_REQUEST);
         }
 
     }
@@ -66,8 +71,21 @@ public class MainRestController {
             balanceOperation.putMoney(id, value);
             return new ResponseEntity<>(1, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(new AppError(0, "Insufficient funds"), HttpStatus.BAD_REQUEST );
+            return new ResponseEntity<>(new AppError(0, "Insufficient funds"), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/getOperationList")
+    public String getOperationList(
+            @RequestParam(value = "from", required = false)
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+            LocalDateTime from,
+            @RequestParam(value = "to", required = false)
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+            LocalDateTime to) {
+
+        return historyOperationService.getOperationList(from, to).toString();
+
     }
 
 
