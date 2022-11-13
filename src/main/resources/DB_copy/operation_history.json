@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "date": "2022-11-13 15:26:56.832220",
+    "operation_type": 1,
+    "summary": 7,
+    "user_id": 1
+  },
+  {
+    "id": 2,
+    "date": "2022-11-13 15:26:57.429069",
+    "operation_type": 1,
+    "summary": 7,
+    "user_id": 1
+  },
+  {
+    "id": 3,
+    "date": "2022-11-13 15:26:57.930567",
+    "operation_type": 1,
+    "summary": 7,
+    "user_id": 1
+  },
+  {
+    "id": 4,
+    "date": "2022-11-13 15:27:00.409606",
+    "operation_type": 1,
+    "summary": 7,
+    "user_id": 1
+  },
+  {
+    "id": 5,
+    "date": "2022-11-13 16:40:08.144713",
+    "operation_type": 2,
+    "summary": 2323,
+    "user_id": 2
+  },
+  {
+    "id": 6,
+    "date": "2022-11-13 16:40:18.596430",
+    "operation_type": 1,
+    "summary": 3213,
+    "user_id": 2
+  },
+  {
+    "id": 7,
+    "date": "2022-11-13 16:42:14.670487",
+    "operation_type": 1,
+    "summary": 3213,
+    "user_id": 2
+  }
+]
