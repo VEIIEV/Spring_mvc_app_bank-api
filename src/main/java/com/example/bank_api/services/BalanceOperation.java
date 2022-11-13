@@ -28,13 +28,13 @@ public class BalanceOperation {
 
     public double getBalance(Long id) {
 
-        return userRepository.findUserById(id).get().getBalance();
+        return userRepository.findUserById(id).orElseThrow().getBalance();
 
     }
 
 
     @Transactional(rollbackOn = {Exception.class})
-    public int putMoney(Long id, double value) throws Exception {
+    public int putMoney(Long id, double value)  {
         User user = userRepository.findUserById(id).orElseThrow();
         user.put(value);
         operationHistoryRepository.save(new OperationHistory(user, 2, value, LocalDateTime.now()));
@@ -47,43 +47,30 @@ public class BalanceOperation {
     @Transactional
     public int takeMoney(Long id, double value) throws Exception {
 
-        User user = userRepository.findUserById(id).get();
+        User user = userRepository.findUserById(id).orElseThrow();
 
         if (user.withdraw(value) <= 0) throw new Exception();
-        System.out.println(LocalDateTime.now());
         operationHistoryRepository.save(new OperationHistory(user, 1, value, LocalDateTime.now()));
         userRepository.save(user);
         Calendar.getInstance();
         return 1;
 
     }
-
+    @Transactional(rollbackOn = Exception.class)
     public int transferMoney(Long senderId, Long recipientId, double value) {
         try {
-            User sender = userRepository.findUserById(senderId).get();
-            User recipient = userRepository.findUserById(recipientId).get();
+            User sender = userRepository.findUserById(senderId).orElseThrow();
+            User recipient = userRepository.findUserById(recipientId).orElseThrow();
             if (sender.withdraw(value) == 0) throw new Exception();
             recipient.put(value);
             userRepository.save(sender);
             userRepository.save(recipient);
+            operationHistoryRepository.save(new OperationHistory(sender, recipientId, 3,value, LocalDateTime.now()));
             return 1;
         } catch (Exception e) {
             return 0;
         }
     }
-
-    // public int createUser(double balance){
-
-    //     try {
-    //         insertUserRepository.insertWithQuery(new User( balance));
-    //         System.out.println(userRepository.findAll());
-    //         return 1;
-    //     } catch (Exception e){
-    //         System.out.println(e.getMessage());
-    //         return 0;
-    //     }
-
-    // }
 
 
     public List<User> showAllUsers() {

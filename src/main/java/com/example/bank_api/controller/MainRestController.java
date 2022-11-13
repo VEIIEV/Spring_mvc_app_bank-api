@@ -74,6 +74,19 @@ public class MainRestController {
         }
     }
 
+    @PostMapping("/transfer")
+    public ResponseEntity<String> transferMoney(
+            @RequestParam("senderId") Long id1,
+            @RequestParam("recipientId") Long id2,
+            @RequestParam("value") double value) {
+        try {
+            balanceOperation.transferMoney(id1, id2, value);
+        } catch (Exception e) {
+            new ResponseEntity<>("sender doesn't have enough fonds", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>("1", HttpStatus.OK);
+    }
+
 
     //dateFormat:  yyyy-mm-ddThh:mm:ssZ like 2011-12-03T10:15:30-03:00
     @GetMapping("/getOperationList")

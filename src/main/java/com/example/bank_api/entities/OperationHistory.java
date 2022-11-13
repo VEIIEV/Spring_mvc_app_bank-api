@@ -25,6 +25,9 @@ public class OperationHistory {
     @JoinColumn(name = "user_id", nullable = false)
     private User userId;
 
+    @JoinColumn(name="recipient_id", nullable = true)
+    private Long recipientId;
+
 
     @Column(name = "operation_type")
     private int operationType;
@@ -39,7 +42,16 @@ public class OperationHistory {
 
     public OperationHistory(User userId, int operationType, double summary, LocalDateTime date){
         this.userId=userId;
+        this.recipientId=null;
+        //1-take, 2-put
+        this.operationType=operationType;
+        this.summary=summary;
+        this.date=date;
+    }
 
+    public OperationHistory(User userId, Long recipientId, int operationType, double summary, LocalDateTime date){
+        this.userId=userId;
+        this.recipientId=recipientId;
         //1-take, 2-put
         this.operationType=operationType;
         this.summary=summary;
