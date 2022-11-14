@@ -1,0 +1,1 @@
+web: java -jar target/bank_api-0.0.1-SNAPSHOT.jar
