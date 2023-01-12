@@ -45,11 +45,11 @@ public class BalanceOperation {
 
 
     @Transactional
-    public int takeMoney(Long id, double value) throws Exception {
+    public int takeMoney(Long id, double value)  {
 
         User user = userRepository.findUserById(id).orElseThrow();
 
-        if (user.withdraw(value) <= 0) throw new Exception();
+        if (user.withdraw(value) <= 0) return 0;
         operationHistoryRepository.save(new OperationHistory(user, 1, value, LocalDateTime.now()));
         userRepository.save(user);
         Calendar.getInstance();
